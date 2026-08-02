@@ -5,9 +5,11 @@ from time import perf_counter
 import structlog
 
 from app.models import Decision, DecisionPacket
+from policy.engine import PolicyEngine
 from router.contracts import Provider
 from router.prompts import PromptAssembler
 from router.validation import DecisionParser, RepairEngine, RetryPolicy, SchemaValidator
+from router.verification import DecisionVerifier
 
 
 class RouterAgent:
@@ -20,12 +22,15 @@ class RouterAgent:
         self._assembler = assembler
         self._parser = DecisionParser()
         self._validator = SchemaValidator()
+        self._verifier = DecisionVerifier()
+        self._policy = PolicyEngine()
         self._repair = RepairEngine()
         self._logger = logger
 
     def decide(self, packet: DecisionPacket) -> Decision:
         """Generate, validate, repair once if needed, and return a decision."""
         started = perf_counter()
+        directive = self._policy.before_router(packet)
         prompt, _ = self._assembler.assemble(packet)
         self._logger.info("router_provider_selected", provider=self._provider.name)
         response = self._provider.complete(prompt)
@@ -46,7 +51,13 @@ class RouterAgent:
         latency = round((perf_counter() - started) * 1000, 3)
         final = decision.model_copy(update={"latency_ms": latency, "repair_count": repairs})
         validated = self._validator.validate(final)
+        policy_decision = self._policy.after_router(packet, validated, directive)
+        verified = self._verifier.verify(policy_decision, packet)
         self._logger.info(
-            "router_decision_generated", provider=validated.provider, latency_ms=latency
+            "router_decision_generated",
+            provider=verified.decision.provider,
+            latency_ms=latency,
+            verification_corrections=len(verified.corrections),
+            policy_overrides=len(directive.reasons),
         )
-        return validated
+        return verified.decision

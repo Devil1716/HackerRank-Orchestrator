@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 — Evaluation and deterministic safeguards
+
+- Expanded evaluation with class metrics, evidence metrics, calibration
+  diagnostics, JSON output, and dependency-free plots.
+- Added offline temperature, Platt, isotonic, and confidence-validation seams.
+- Added deterministic policy enforcement, post-router verification, and an
+  append-only offline feedback store.
+
 ## 1.0.0 — Final submission hardening
 
 - Added the portable `python -m orchestrate` entrypoint.

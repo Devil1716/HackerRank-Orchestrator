@@ -116,6 +116,11 @@ failures, and zero repairs. These are reproducibility measurements, not hidden
 judge scores. See [docs/performance_report.md](docs/performance_report.md) and
 [docs/HACKERRANK_SUBMISSION_GUIDE.md](docs/HACKERRANK_SUBMISSION_GUIDE.md).
 
+Evaluation also produces macro/weighted F1, per-class accuracy, evidence
+precision/recall, ECE, Brier score, JSON reports, and SVG calibration plots.
+Policy overrides and post-router verification remain deterministic; see
+[docs/production-enhancements.md](docs/production-enhancements.md).
+
 ## Documentation and visuals
 
 - [Submission guide](SUBMISSION.md)

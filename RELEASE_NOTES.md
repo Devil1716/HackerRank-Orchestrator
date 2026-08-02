@@ -2,6 +2,10 @@
 
 This is the final frozen engineering release for HackerRank submission.
 
+The final engineering increment adds offline evaluation/calibration artifacts,
+versioned policy enforcement, post-router verification, and feedback capture
+without online learning or pipeline redesign.
+
 Final hardening preserves the frozen architecture while adding a portable
 module entrypoint, hash-pinned runtime requirements, publication-quality
 architecture visuals, and an explicit offline Docker limitation.

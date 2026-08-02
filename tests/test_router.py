@@ -2,10 +2,15 @@
 
 import json
 
+import pytest
+
+from app.models import ActionType, Decision, MessageType
 from app.services.container import build_container
 from router.agent import RouterAgent
+from router.errors import InvalidDecisionError
 from router.prompts import PromptAssembler, SystemPromptBuilder
 from router.providers import CallableProvider
+from router.verification import DecisionVerifier
 
 
 def _packet() -> object:
@@ -49,3 +54,22 @@ def test_invalid_json_is_repaired_once() -> None:
     )
     decision = agent.decide(_packet())
     assert decision.repair_count == 1
+
+
+def test_verifier_rejects_evidence_outside_packet() -> None:
+    """Post-router verification prevents unsupported evidence citations."""
+    packet = _packet()
+    decision = Decision(
+        message_id="msg_091",
+        action=ActionType.NOTIFY,
+        message_type=MessageType.UNKNOWN,
+        reason="unsupported evidence test",
+        confidence=0.5,
+        evidence_message_ids=("not-in-packet",),
+        provider="test",
+        decision_version="test-v1",
+        prompt_version="test-v1",
+    )
+
+    with pytest.raises(InvalidDecisionError):
+        DecisionVerifier().verify(decision, packet)
