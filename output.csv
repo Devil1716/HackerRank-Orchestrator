@@ -1,0 +1,111 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_091,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_090,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_048,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_040,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_075,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_005,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_104,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_069,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_107,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_070,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_003,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_099,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_008,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_092,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_060,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_004,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_030,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_045,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_052,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_009,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_071,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_016,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_065,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_038,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_086,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_014,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_094,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_029,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_105,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_002,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_010,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_078,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_013,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_018,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_044,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_032,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_106,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_006,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_109,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_108,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_019,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_088,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_056,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_027,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_050,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_083,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_063,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_033,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_061,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_020,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_017,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_058,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_026,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_047,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_046,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_042,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_079,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_098,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_037,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_007,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_085,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_001,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_021,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_028,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_012,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_064,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_103,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_031,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_057,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_087,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_067,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_039,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_082,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_066,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_049,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_015,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_051,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_097,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_089,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_053,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_059,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_024,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_072,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_036,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_076,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_055,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_102,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_080,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_093,mute,scam,Suspicious or unsafe language was detected.,0.92,none
+msg_034,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_035,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_101,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_041,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_011,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_110,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_095,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_074,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_073,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_054,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_068,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_100,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_062,notify,payment,A payment-related update may require timely attention.,0.84,none
+msg_096,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_043,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_077,digest,promotion,Promotional content can wait for a digest.,0.78,none
+msg_081,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_025,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_084,notify,event,A time-sensitive event or schedule update may require attention.,0.83,none
+msg_022,notify,payment,A payment-related update may require timely attention.,0.84,none

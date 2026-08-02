@@ -1,0 +1,11 @@
+services:
+  router:
+    build: .
+    environment:
+      ORCHESTRATE_ENVIRONMENT: production
+      ORCHESTRATE_DATA_DIRECTORY: /workspace/dataset
+      ORCHESTRATE_OUTPUT_DIRECTORY: /workspace/output
+    volumes:
+      - ./dataset:/workspace/dataset:ro
+      - ./output:/workspace/output
+    command: ["health"]

@@ -1,0 +1,19 @@
+name: quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: latest
+      - run: uv sync --extra dev
+      - run: uv run ruff check .
+      - run: uv run black --check app tests
+      - run: uv run mypy app
+      - run: uv run pytest

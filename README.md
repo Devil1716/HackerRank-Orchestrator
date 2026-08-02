@@ -1,130 +1,144 @@
-# HackerRank Orchestrate
+# Cortex Notify
 
-Starter repository for the **HackerRank Orchestrate** 24-hour hackathon.
+Cortex Notify is a deterministic, memory-aware WhatsApp notification router. It processes each incoming message and produces `notify`, `digest`, or `mute`, plus type, explanation, confidence, and evidence IDs.
 
-## Message Notification Router
-
-Build an AI-powered system for WhatsApp that decides which messages deserve immediate attention, which should wait, and which should be muted.
-
-The system must reason over multimodal messages, including text messages, image posters/screenshots, and voice notes.
-
-WhatsApp is noisy. A user can receive family chats, society notices, school updates, co-worker messages, business account promotions, image posters, voice notes, and scams in the same message stream. Treating every message the same creates two bad outcomes: important messages get missed, and unwanted or risky messages interrupt the user.
-
-Read [`problem_statement.md`](./problem_statement.md) for the full task spec, input/output schema, allowed values, and submission format.
-
----
-
-## Repository Layout
+The complete local path is:
 
 ```text
-.
-├── AGENTS.md                         # Rules for AI coding tools + transcript logging
-├── problem_statement.md              # Full challenge statement
-├── README.md                         # You are here
-└── dataset/
-    ├── messages.csv                  # Messages to route
-    ├── output.csv                    # Blank submission template
-    ├── sample_messages.csv           # Solved examples
-    ├── users.csv                     # User notification behavior
-    ├── groups.csv                    # Group metadata
-    ├── group_members.csv             # User-group relationships
-    ├── business_accounts.csv         # Business sender metadata
-    ├── user_business_history.csv     # User-business history
-    ├── message_history.csv           # Historical messages
-    ├── message_events.csv            # User reactions to historical messages
-    ├── images.csv                    # Image IDs and media file paths
-    ├── voice_notes.csv               # Voice note IDs and media file paths
-    ├── daily_notification_summary.csv
-    └── media/
-        ├── images/
-        └── audio/
+dataset/messages.csv → output.csv
 ```
 
----
+## Architecture
 
-## What You Need to Build
+```mermaid
+flowchart TD
+    R[Polars CSV repositories] --> C[Context Builder]
+    C --> P[Personalization and Evidence]
+    P --> E[Retrieval Engine]
+    E --> F[Feature Engineering]
+    F --> S[Priority and Risk Engine]
+    S --> D[Decision Packet]
+    D --> A[Router Agent]
+    A --> V[Validation Engine]
+    V --> O[Output Generator]
+    O --> CSV[output.csv]
+```
 
-For every row in `dataset/messages.csv`, produce one row in `output.csv` with:
+Repositories are the only dataset-access layer. Later deterministic stages consume typed immutable models. The Router Agent receives only `DecisionPacket` and cannot access repositories, retrieval, feature engineering, media files, or raw CSV data.
 
-| Column | Meaning |
-|---|---|
-| `message_id` | Incoming message ID |
-| `action` | One of `notify`, `digest`, or `mute` |
-| `message_type` | Best-fit message category |
-| `reason` | Short human-readable explanation |
-| `confidence` | Number from `0` to `1` |
-| `evidence_message_ids` | Historical message IDs used as evidence; write `none` if there is no useful evidence |
+## Pipeline
 
-Your system should make personalized decisions using the provided message, user, group, business, media, and historical interaction data.
-For image and voice-note messages, `images.csv` and `voice_notes.csv` only provide file paths; your system should inspect the media files themselves.
+```mermaid
+sequenceDiagram
+    participant M as messages.csv
+    participant X as ExecutionPipeline
+    participant B as Deterministic stages
+    participant A as Router Agent
+    participant V as Validation
+    participant O as CSVExporter
+    M->>X: message IDs
+    X->>B: context, profile, evidence, features, signals
+    B-->>X: immutable DecisionPacket
+    X->>A: DecisionPacket only
+    A-->>V: immutable Decision
+    V-->>O: validated decision or safe fallback
+    O-->>M: output.csv
+```
 
----
+## Installation
 
-## Suggested Workflow
+Requirements: Python 3.12 and `uv`.
 
-1. Inspect `dataset/sample_messages.csv` to understand the expected output format.
-2. Load `dataset/messages.csv` and all relevant context files.
-3. Build your routing system using any approach: LLMs, retrieval, rules, classifiers, agents, or hybrids.
-4. Write predictions to `output.csv`.
-5. Evaluate your approach on the solved sample rows before submitting.
+```powershell
+uv sync --extra dev
+uv run pre-commit install
+```
 
-You may use any language or runtime. Python, JavaScript, and TypeScript are all reasonable choices.
+Docker:
 
----
+```powershell
+docker compose build
+docker compose run --rm router health
+```
 
-## Requirements
+## Quick start
 
-Your solution must:
+```powershell
+uv run orchestrate run --output output.csv
+```
 
-- be runnable from the terminal
-- read the provided files from `dataset/`
-- produce a valid `output.csv`
-- include one prediction for every `message_id` in `dataset/messages.csv`
-- not use organizer-only files or hardcoded labels
+The output uses exactly: `message_id,action,message_type,reason,confidence,evidence_message_ids`.
 
-If you use API keys or secrets, read them from environment variables. Never hardcode secrets in the repo.
+## CLI
 
----
+```text
+orchestrate health       # configuration and path checks
+orchestrate run          # execute and export output.csv
+orchestrate evaluate     # execute and print metrics
+orchestrate benchmark    # batch performance metrics
+orchestrate validate     # execute without writing output
+orchestrate export       # execute and export the official CSV
+orchestrate profile      # stage and memory metrics
+```
 
-## Evaluation
+## Configuration
 
-Your `output.csv` will be compared against hidden ground-truth labels.
+Settings use the `ORCHESTRATE_` environment prefix and `.env` support. Dataset paths default to `dataset/*.csv` and can be overridden individually.
 
-The scoring will consider:
+```powershell
+$env:ORCHESTRATE_DATA_DIRECTORY = "dataset"
+$env:ORCHESTRATE_LOG_LEVEL = "INFO"
+$env:ORCHESTRATE_CONTEXT_HISTORY_LIMIT = "50"
+```
 
-- correctness of `action`
-- correctness of `message_type`
-- usefulness and consistency of `reason`
-- whether `evidence_message_ids` point to relevant historical messages
-- reasonable confidence calibration
+The local composition uses the deterministic Mock provider. Production provider transports are injectable and secrets are never hardcoded.
 
-Strong systems will combine retrieval, structured metadata, behavioral history, safety checks, OCR/ASR handling, and contextual reasoning.
+## Evaluation and benchmarking
 
----
+```powershell
+uv run python code/evaluation/main.py
+uv run python scripts/benchmark_pipeline.py
+uv run python scripts/benchmark_retrieval.py
+uv run python scripts/benchmark_features.py
+uv run python scripts/evaluate_router.py
+```
 
-## Chat Transcript Logging
+## Testing
 
-This repo includes an [`AGENTS.md`](./AGENTS.md) file for AI coding tools. It asks compatible tools to append conversation summaries to:
+```powershell
+uv run ruff check .
+uv run ruff format --check .
+uv run mypy app pipeline router orchestration priority features personalization context repositories retrieval
+uv run pytest
+uv run python -m compileall app api config context features media models orchestration ocr personalization pipeline priority reasoning repositories retrieval router speech utils validation scripts
+```
 
-| Platform | Path |
-|---|---|
-| macOS / Linux | `$HOME/hackerrank_orchestrate_august26/log.txt` |
-| Windows | `%USERPROFILE%\hackerrank_orchestrate_august26\log.txt` |
+## Project structure
 
-Upload this log as your chat transcript at submission time. Do not paste secrets into the chat.
+```text
+app/              settings, logging, DI, CLI, domain models
+repositories/     Polars-backed read-only CSV adapters
+context/          MessageContext construction
+personalization/  deterministic profiles and evidence metadata
+retrieval/        isolated vector, embedding, reranking, and retriever ports
+features/         deterministic DecisionFeatures
+priority/         compact DecisionSignals
+orchestration/    immutable DecisionPacket and trace
+router/           single provider-agnostic Router Agent
+pipeline/         validation, batching, metrics, and CSV export
+code/evaluation/  visible-fixture evaluation reports
+docs/             phase guides, ADRs, reports, and operations notes
+tests/            unit, integration, and end-to-end tests
+```
 
----
+## Design philosophy
 
-## Submission
+Everything except the narrow Router Agent boundary is deterministic. Immutable Pydantic models make stage contracts explicit. Evidence and metadata preserve explainability. Provider, vector-store, and repository ports keep infrastructure replaceable. Validation occurs before output, and failures use a safe mute fallback rather than silently producing corrupt rows.
 
-Submit the following files as instructed by HackerRank:
+## Production considerations
 
-1. **Code zip**: full runnable solution, prompts/configs, README, and any evaluation files.
-2. **Predictions CSV**: final `output.csv` for all rows in `dataset/messages.csv`.
-3. **Chat transcript**: the `log.txt` described above.
+Use a configured provider adapter for live routing, keep secrets in environment or a secret manager, monitor validation failures and confidence calibration, and retain trace IDs for incident analysis. The current output is reproducible with the local Mock provider and frozen dataset. Parallel batch processing remains behind the existing `BatchProcessor` boundary.
 
-Before submitting, confirm:
+## Future work
 
-- `output.csv` has one row per row in `dataset/messages.csv`.
-- `output.csv` has the exact required columns in the exact required order.
-- Your runnable code and setup instructions are included in `code.zip`.
+The architecture is frozen for this submission. Further accuracy work should use matched hidden-like labels and controlled offline experiments without bypassing stage contracts.

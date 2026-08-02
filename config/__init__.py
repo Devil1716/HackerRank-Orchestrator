@@ -1,0 +1,5 @@
+"""Canonical public configuration package."""
+
+from app.config.settings import Settings
+
+__all__ = ["Settings"]

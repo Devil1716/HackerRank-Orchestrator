@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cortex-notify"
+version = "1.0.0"
+description = "Deterministic memory-aware multimodal notification router."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "HackerRank Orchestrate Team" }]
+dependencies = [
+  "polars>=1.0,<2",
+  "pydantic>=2.8,<3",
+  "pydantic-settings>=2.4,<3",
+  "structlog>=24.4,<26",
+  "typer>=0.12,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.8,<26",
+  "mypy>=1.11,<2",
+  "pre-commit>=3.8,<5",
+  "pytest>=8.3,<9",
+  "ruff>=0.6,<1",
+]
+
+[project.scripts]
+orchestrate = "app.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "app", "api", "config", "context", "features", "media", "models",
+  "ocr", "orchestration", "pipeline", "personalization", "priority", "reasoning", "repositories", "retrieval", "router",
+  "speech", "utils", "validation",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = ["dataset"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ANN", "D"]
+ignore = ["D203", "D213", "ANN401"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["D103"]
+"code/**/*.py" = ["D100", "D103"]
+"repositories/csv/repositories.py" = ["D102", "D107"]
+"personalization/*.py" = ["D102", "D107"]
+"personalization/__init__.py" = ["E402"]
+"retrieval/*.py" = ["D102", "D107", "E501", "B019"]
+"retrieval/__init__.py" = ["E402"]
+"features/service.py" = ["D102", "D107"]
+"priority/*.py" = ["D102", "D107", "E501"]
+"orchestration/*.py" = ["D102", "D107"]
+"router/*.py" = ["D102", "D107", "E501"]
+"pipeline/*.py" = ["D102", "D105", "D107"]
+"code/evaluation/main.py" = ["D102", "D107", "E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = "(^|/)(tests|dataset)/"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
