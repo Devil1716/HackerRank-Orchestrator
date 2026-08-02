@@ -1,0 +1,271 @@
+{
+  "calibration": {
+    "brier_score": 0.2864,
+    "calibration_gap": 0.2087,
+    "curve": [
+      {
+        "accuracy": 0.4444,
+        "bin": 6,
+        "confidence": 0.61,
+        "count": 18,
+        "lower": 0.6,
+        "upper": 0.7
+      },
+      {
+        "accuracy": 0.0,
+        "bin": 7,
+        "confidence": 0.78,
+        "count": 1,
+        "lower": 0.7,
+        "upper": 0.8
+      },
+      {
+        "accuracy": 0.5714,
+        "bin": 8,
+        "confidence": 0.8314,
+        "count": 7,
+        "lower": 0.8,
+        "upper": 0.9
+      },
+      {
+        "accuracy": 0.75,
+        "bin": 9,
+        "confidence": 0.92,
+        "count": 4,
+        "lower": 0.9,
+        "upper": 1.0
+      }
+    ],
+    "ece": 0.2087
+  },
+  "confusion_matrix": {
+    "digest": {
+      "digest": 8,
+      "mute": 1,
+      "notify": 2
+    },
+    "mute": {
+      "digest": 6,
+      "mute": 3,
+      "notify": 1
+    },
+    "notify": {
+      "digest": 5,
+      "mute": 0,
+      "notify": 4
+    }
+  },
+  "errors": [
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "notify",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_001",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "notify",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_006",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.83",
+      "evidence": "none",
+      "expected": "digest",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_009",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "notify",
+      "reason": "time-sensitive schedule content",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_013",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_014",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_015",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "notify",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_042",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_043",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_045",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "notify",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_046",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.78",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_047",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "promotional content",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.92",
+      "evidence": "none",
+      "expected": "digest",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_048",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "mute",
+      "reason": "suspicious language",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.83",
+      "evidence": "none",
+      "expected": "digest",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_050",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "notify",
+      "reason": "time-sensitive schedule content",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.61",
+      "evidence": "none",
+      "expected": "notify",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_051",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "digest",
+      "reason": "weak interruption signal",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    },
+    {
+      "confidence": "0.83",
+      "evidence": "none",
+      "expected": "mute",
+      "features": "not available in solved sample fixture",
+      "message_id": "sample_msg_052",
+      "possible_cause": "text-only evaluation fixture lacks full packet labels",
+      "prediction": "notify",
+      "reason": "time-sensitive schedule content",
+      "recommended_fix": "evaluate with matched message IDs and packet-level annotations",
+      "signals": "not available in solved sample fixture"
+    }
+  ],
+  "failure_categories": {
+    "digest_predicted_as_mute": 1,
+    "digest_predicted_as_notify": 2,
+    "mute_predicted_as_digest": 6,
+    "mute_predicted_as_notify": 1,
+    "notify_predicted_as_digest": 5
+  },
+  "metrics": {
+    "accuracy": 0.5,
+    "action_distribution": {
+      "digest": 19,
+      "mute": 4,
+      "notify": 7
+    },
+    "brier_score": 0.2864,
+    "calibration_gap": 0.2087,
+    "ece": 0.2087,
+    "evidence_precision": 0.0,
+    "evidence_recall": 0.0,
+    "macro_f1": 0.4873,
+    "macro_precision": 0.5808,
+    "macro_recall": 0.4906,
+    "mean_confidence": 0.7087,
+    "per_class_accuracy": {
+      "digest": 0.7273,
+      "mute": 0.3,
+      "notify": 0.4444
+    },
+    "weighted_f1": 0.4884
+  },
+  "rows": 30
+}
