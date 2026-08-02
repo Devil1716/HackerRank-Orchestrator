@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /workspace
 
 COPY pyproject.toml README.md LICENSE ./
-COPY app api config context features media models orchestration ocr personalization pipeline priority reasoning repositories retrieval router speech utils validation ./
+COPY app api config context features media models orchestration ocr orchestrate personalization pipeline priority reasoning repositories retrieval router speech utils validation ./
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir .
 

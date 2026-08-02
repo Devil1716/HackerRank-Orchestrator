@@ -39,13 +39,15 @@ class EvidenceMerger:
                     evidence_type=(
                         EvidenceType.HISTORICAL_MESSAGE
                         if retriever_name == "message"
-                        else EvidenceType.BEHAVIOR
-                        if retriever_name == "behavior"
-                        else EvidenceType.METADATA
+                        else (
+                            EvidenceType.BEHAVIOR
+                            if retriever_name == "behavior"
+                            else EvidenceType.METADATA
+                        )
                     ),
-                    source_message_id=candidate.evidence_id
-                    if retriever_name == "message"
-                    else None,
+                    source_message_id=(
+                        candidate.evidence_id if retriever_name == "message" else None
+                    ),
                     summary=candidate.summary,
                     relevance=candidate.similarity,
                     confidence=candidate.similarity,

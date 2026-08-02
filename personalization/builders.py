@@ -95,10 +95,12 @@ class ProfileFactory:
         return NotificationPreferences(
             user_id=context.recipient.user_id,
             do_not_disturb_window=context.recipient.do_not_disturb_window,
-            muted_conversation_ids=(context.conversation.conversation_id,)
-            if context.group_memberships
-            and any(item.group_muted_by_user for item in context.group_memberships)
-            else (),
+            muted_conversation_ids=(
+                (context.conversation.conversation_id,)
+                if context.group_memberships
+                and any(item.group_muted_by_user for item in context.group_memberships)
+                else ()
+            ),
             digest_enabled=True,
             preferred_conversation_types=(context.conversation.conversation_type.value,),
             muted_business_ids=muted,
@@ -128,9 +130,9 @@ class ProfileFactory:
                 BusinessTrustProfile(
                     user_id=context.recipient.user_id,
                     business_id=record.business_id,
-                    category=context.business.category
-                    if context.business
-                    else BusinessCategory.UNKNOWN,
+                    category=(
+                        context.business.category if context.business else BusinessCategory.UNKNOWN
+                    ),
                     trust=trust,
                     has_recent_transaction=record.order_count > 0,
                     interaction_frequency=record.activity_count_180d,

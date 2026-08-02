@@ -35,6 +35,7 @@ packages = [
   "app", "api", "config", "context", "features", "media", "models",
   "ocr", "orchestration", "pipeline", "personalization", "priority", "reasoning", "repositories", "retrieval", "router",
   "speech", "utils", "validation",
+  "orchestrate",
 ]
 
 [tool.ruff]

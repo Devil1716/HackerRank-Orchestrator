@@ -36,6 +36,30 @@ No secrets are committed. Provider credentials are injected through environment/
 
 Lazy repository loading, bounded retrieval caches, batch embeddings, prompt budgets, and metrics reduce cost. The local 110-message benchmark runs at roughly 42 messages/second with the Mock provider; external provider latency and cost must be measured separately.
 
+## Production deployment
+
+The container is intentionally small and stateless. Mount datasets read-only,
+mount the output directory explicitly, inject provider secrets through the
+environment, and ship structured logs to the platform collector. A production
+deployment should add resource limits, health probes, retry budgets, and a
+separate secrets manager; none of those operational controls are required by
+the offline judge path.
+
+## Whiteboard explanation
+
+Draw four boundaries left to right: repositories, deterministic preparation,
+DecisionPacket, and Router/validation. Put the data contract under the first
+three boundaries and show one arrow into the Router. Explain that every arrow
+is typed, provenance-carrying, and replayable. This quickly communicates why
+the model is replaceable while the decision system remains stable.
+
+## Observability
+
+Structured events identify repository queries, stage durations, signal
+aggregation, packet creation, provider calls, validation, and export. Trace IDs
+connect packet construction to the final decision. Sensitive message content is
+not required in operational logs.
+
 ## Likely questions and ideal answers
 
 **Why not let the LLM read the CSVs?** Because that would make behavior opaque, non-reproducible, and difficult to secure. The model receives a validated packet.

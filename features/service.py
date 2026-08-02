@@ -96,13 +96,15 @@ class FeatureFactory:
             ),
             "conversation_recency": lambda c, p, e: _score(
                 "conversation_recency",
-                1.0
-                if c.conversation_statistics.last_message_at
-                and (
-                    c.message.created_at - c.conversation_statistics.last_message_at
-                ).total_seconds()
-                <= 86400
-                else 0.0,
+                (
+                    1.0
+                    if c.conversation_statistics.last_message_at
+                    and (
+                        c.message.created_at - c.conversation_statistics.last_message_at
+                    ).total_seconds()
+                    <= 86400
+                    else 0.0
+                ),
                 0.9,
                 ("context.timestamps",),
             ),
@@ -171,9 +173,11 @@ class FeatureFactory:
             ),
             "preference_alignment": lambda c, p, e: _score(
                 "preference_alignment",
-                0.0
-                if p and c.conversation.conversation_id in p.preferences.muted_conversation_ids
-                else 1.0,
+                (
+                    0.0
+                    if p and c.conversation.conversation_id in p.preferences.muted_conversation_ids
+                    else 1.0
+                ),
                 1.0 if p else 0.0,
                 ("personalization.preferences",),
             ),

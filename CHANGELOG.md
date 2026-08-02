@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 — Final submission hardening
+
+- Added the portable `python -m orchestrate` entrypoint.
+- Added a hash-pinned runtime `requirements.txt` export.
+- Added the HackerRank submission guide, trace example, performance table, and
+  SVG/PNG/PDF architecture visual set.
+- Revalidated the CLI, output schema, formatting, typing, tests, compilation,
+  and deterministic execution.
+
 ## 1.0.0 — Final submission
 
 - Completed deterministic repository-to-output pipeline.

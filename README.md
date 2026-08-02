@@ -47,7 +47,13 @@ sequenceDiagram
 
 ## Installation
 
-Requirements: Python 3.12 and `uv`.
+Requirements: Python 3.12. The judge path needs only `pip` and the locked
+runtime requirements; `uv` is optional for development.
+
+```powershell
+py -3.12 -m venv .venv
+.\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt
+```
 
 ```powershell
 uv sync --extra dev
@@ -65,6 +71,12 @@ docker compose run --rm router health
 
 ```powershell
 uv run orchestrate run --output output.csv
+```
+
+The equivalent portable module invocation is:
+
+```powershell
+python -m orchestrate run --output output.csv
 ```
 
 The output uses exactly: `message_id,action,message_type,reason,confidence,evidence_message_ids`.
@@ -90,6 +102,27 @@ $env:ORCHESTRATE_DATA_DIRECTORY = "dataset"
 $env:ORCHESTRATE_LOG_LEVEL = "INFO"
 $env:ORCHESTRATE_CONTEXT_HISTORY_LIMIT = "50"
 ```
+
+## Evaluation and benchmarking
+
+```powershell
+python -m orchestrate evaluate
+python -m orchestrate benchmark
+python -m orchestrate validate
+```
+
+The local 110-message baseline records 42.54 messages/second, zero validation
+failures, and zero repairs. These are reproducibility measurements, not hidden
+judge scores. See [docs/performance_report.md](docs/performance_report.md) and
+[docs/HACKERRANK_SUBMISSION_GUIDE.md](docs/HACKERRANK_SUBMISSION_GUIDE.md).
+
+## Documentation and visuals
+
+- [Submission guide](SUBMISSION.md)
+- [HackerRank submission guide](docs/HACKERRANK_SUBMISSION_GUIDE.md)
+- [Interview guide](INTERVIEW_GUIDE.md)
+- [Architecture diagrams](docs/diagrams.md)
+- [Decision trace example](docs/example_decision_trace.md)
 
 The local composition uses the deterministic Mock provider. Production provider transports are injectable and secrets are never hardcoded.
 

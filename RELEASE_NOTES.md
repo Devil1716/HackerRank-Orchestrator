@@ -2,6 +2,10 @@
 
 This is the final frozen engineering release for HackerRank submission.
 
+Final hardening preserves the frozen architecture while adding a portable
+module entrypoint, hash-pinned runtime requirements, publication-quality
+architecture visuals, and an explicit offline Docker limitation.
+
 Highlights:
 
 - End-to-end execution from `dataset/messages.csv` to `output.csv`.

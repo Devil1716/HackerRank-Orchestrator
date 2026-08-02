@@ -30,9 +30,9 @@ class MetricsCollector:
             "repairs": self.repairs,
             "token_usage": self.token_usage,
             "estimated_cost": self.estimated_cost,
-            "average_latency_ms": sum(self.latencies_ms) / len(self.latencies_ms)
-            if self.latencies_ms
-            else 0.0,
+            "average_latency_ms": (
+                sum(self.latencies_ms) / len(self.latencies_ms) if self.latencies_ms else 0.0
+            ),
             "stage_latencies_ms": {
                 name: sum(values) / len(values) for name, values in self.stage_latencies_ms.items()
             },
